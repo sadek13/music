@@ -8,7 +8,7 @@ class HomeController extends Controller
 public function index()
 {
 // You can pass data to the view if needed
-return view('index');
+return view('home');
 }
 }
 
