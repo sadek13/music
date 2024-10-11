@@ -56,6 +56,65 @@
                     </div>
                     <hr class="border-gray-300 my-2 mx-auto my-5" style="width: 50%;"/>
 
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Day</th>
+                                <th>From</th>
+                                <th>To</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Monday</td>
+                                <td><input type="time" name="availability[Monday][from]" required></td>
+                                <td><input type="time" name="availability[Monday][to]" required></td>
+                            </tr>
+                            <tr>
+                                <td>Tuesday</td>
+                                <td><input type="time" name="availability[Tuesday][from]" required></td>
+                                <td><input type="time" name="availability[Tuesday][to]" required></td>
+                            </tr>
+                            <tr>
+                                <td>Wednesday</td>
+                                <td><input type="time" name="availability[Wednesday][from]" required></td>
+                                <td><input type="time" name="availability[Wednesday][to]" required></td>
+                            </tr>
+                            <tr>
+                                <td>Thursday</td>
+                                <td><input type="time" name="availability[Thursday][from]" required></td>
+                                <td><input type="time" name="availability[Thursday][to]" required></td>
+                            </tr>
+                            <tr>
+                                <td>Friday</td>
+                                <td><input type="time" name="availability[Friday][from]" required></td>
+                                <td><input type="time" name="availability[Friday][to]" required></td>
+                            </tr>
+                            <tr>
+                                <td>Saturday</td>
+                                <td><input type="time" name="availability[Saturday][from]" required></td>
+                                <td><input type="time" name="availability[Saturday][to]" required></td>
+                            </tr>
+                            <tr>
+                                <td>Sunday</td>
+                                <td><input type="time" name="availability[Sunday][from]" required></td>
+                                <td><input type="time" name="availability[Sunday][to]" required></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <!-- Available Now Radio Button -->
+                    <div class="radio-group">
+                        <h4>Availability</h4>
+                        <label>
+                            <input type="radio" name="available_now" value="1" onclick="toggleDateFilter(false)"> Available Now
+                        </label>
+                        <label>
+                            <input type="radio" name="available_now" value="0" onclick="toggleDateFilter(true)"> Not Available Now
+                        </label>
+                    </div>
+
                 </div>
 
                 <!-- Subsection for Instrument Search -->
