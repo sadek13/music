@@ -3,7 +3,7 @@
     "builds": [
     ],
     "routes": [
-      { "src": "/api/(.*)", "dest": "public/index.php" },
-      { "src": "/(.*)", "dest": "public/index.php" }
+      { "src": "/api/(.*)", "dest": "public/index.blade.php" },
+      { "src": "/(.*)", "dest": "public/index.blade.php" }
     ]
   }
