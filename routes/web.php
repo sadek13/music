@@ -30,8 +30,16 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-
 Route::get('/mentors', [MentorController::class, 'index'])->name('mentors.index');
+
+
+Route::post('/mentors', [MentorController::class, 'index'])->name('mentors.index');
+
+Route::get('/mentors/create', [MentorController::class, 'show'])->name('mentors.create');
+
+
+Route::get('/mentors/{mentor}/music/{musicType}', [MentorController::class, 'show'])->name('mentors.show');
+
 
 
 Route::middleware('auth')->group(function () {
