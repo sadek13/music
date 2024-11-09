@@ -17,7 +17,7 @@ class MentorController extends Controller
         $musicTypes = MusicType::all();
         $availableDays = $request->input('availableDays', []);
 
-    $message="";
+        $message = "";
 
         // Filter mentors based on available days
         if ($availableDays && is_array($availableDays) && !empty($availableDays)) {
@@ -42,24 +42,32 @@ class MentorController extends Controller
     public function show($mentorId, $musicTypeId)
     {
         // Retrieve the mentor with specified ID and eager load related data, filtering by the specific music type
-        $mentor = Mentor::with(['user', 'musicType','experienceLevel'])
-        ->where('mentors.id', $mentorId)  // Specify the table for the ID
-        ->whereHas('musicType', function ($query) use ($musicTypeId) {
-            $query->where('music_types.id', $musicTypeId); // Specify the table for the ID
-        })
-        ->firstOrFail();
+        $mentor = Mentor::with(['user', 'musicType', 'experienceLevel'])
+            ->where('mentors.id', $mentorId)  // Specify the table for the ID
+            ->whereHas('musicType', function ($query) use ($musicTypeId) {
+                $query->where('music_type_id', $musicTypeId); // Specify the table for the ID
+            })
+            ->firstOrFail();
 
-        $otherMusicTypes= Mentor::with(['user', 'experienceLevel', , 'musicType'])
-                    ->where('mentors.id', $mentorId)
-                    ->whereDoesntHave('musicType', function ($query) use ($musicTypeId) {
-                        $query->where('music_types.id', $musicTypeId);
-                    })
-                    ->first();
+        $otherMentors = Mentor::with(['user', 'musicType', 'experienceLevel'])
+            ->whereHas('musicType', function ($query) use ($musicTypeId) {
+                $query->where('music_type_id', $musicTypeId); // Specify the table for the ID
+            })
+            ->where('mentors.id', '!=', $mentorId) // Exclude the current mentor
+            ->get();
+
+        // dump($otherMentors);
+
+        // Retrieve the specific music type
+        $musicType = $mentor->musicType->firstWhere('id', $musicTypeId); // Get the first music type for the mentor
 
 
 
+// $unavailableDates=getUnavailableDates($mentorId);
 
-        return view('mentors.show', compact('mentor','otherMusicTypes'));
+
+        // Pass the variables to the view
+        return view('mentors.show', compact('mentor', 'musicType', 'otherMentors'));
     }
 
 
@@ -107,4 +115,10 @@ class MentorController extends Controller
 
         return $query->orderBy('mentor_music_type.review_star_rate', 'desc')->get();
     }
+
+    // public function fetchUnavailableDates($mentorId){
+
+
+
+    // }
 }

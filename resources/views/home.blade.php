@@ -1,11 +1,6 @@
 <x-layout>
 
 
-    <x-slot:heading>
-        new
-    </x-slot:heading>
-
-
     <section class="flex items-center justify-between w-full h-screen bg-cover bg-center px-8" style="background-image: url('{{ asset('images/music-man.jpg') }}');">
         <!-- Left Content -->
         <div class="max-w-lg bg-white bg-opacity-75 p-6 rounded-lg">
@@ -15,11 +10,15 @@
           <p class="text-lg text-gray-600 mb-6">
             Start your journey to becoming a master musician. Learn from top instructors and enhance your skills.
           </p>
-          <a href="/mentors" class="px-6 py-3 bg-blue-600 text-white rounded-md hover:bg-blue-500">
+          <a href="/mentors" class="px-6 py-3 bg-green-600 text-white rounded-md hover:bg-blue-500">
             Let’s Learn
           </a>
         </div>
       </section>
+
+      <x-instruments>
+
+      </x-instruments>
 
       <section class="flex items-center justify-between h-screen px-8 bg-gray-100">
         <!-- Image Element -->
@@ -34,7 +33,7 @@
             <p class="text-lg text-gray-600 mb-6">
                 Start your journey to becoming a master musician. Learn from top instructors and enhance your skills.
             </p>
-            <a href="/mentors" class="px-6 py-3 bg-blue-600 text-white rounded-md hover:bg-blue-500">
+            <a href="/mentors" class="px-6 py-3 bg-green-600 text-white rounded-md hover:bg-blue-500">
                 Let’s Learn
             </a>
         </div>
@@ -50,7 +49,7 @@
             <p class="text-lg text-gray-600 mb-6">
                 Start your journey to becoming a master musician. Learn from top instructors and enhance your skills.
             </p>
-            <a href="/mentors" class="px-6 py-3 bg-blue-600 text-white rounded-md hover:bg-blue-500">
+            <a href="/mentors" class="px-6 py-3 bg-green-600 text-white rounded-md hover:bg-blue-500">
                 Let’s Learn
             </a>
         </div>
