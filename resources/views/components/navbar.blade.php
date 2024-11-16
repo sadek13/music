@@ -6,14 +6,19 @@
             <!-- Left Side: Logo and App Name -->
             <div class="flex items-center space-x-2">
                 <a href="/">
-                    <img src="your-logo.png" alt="Logo" class="h-8 w-8" />
+                    {{-- <img src="your-logo.png" alt="Logo" class="h-8 w-8" /> --}}
+                <span class="text-2xl font-semibold">Dawzin</span>
+
                 </a>
-                <span class="text-xl font-semibold">YourAppName</span>
             </div>
 
             <!-- Right Side: Login or Icons based on user authentication -->
             <div class="flex items-center space-x-4">
-                <button class="text-sm font-medium bg-green-700 text-white px-3 py-1 rounded-md">Login</button>
+            <a href="login"><button class="text-md font-medium px-3 py-1 rounded-md hover:underline">Mentor</button>
+            </a>
+                <button class="text-md font-medium px-3 py-1 rounded-md hover:underline">Student</button>
+
+
                 <!-- Icons -->
                 <div class="flex items-center space-x-3">
                     <a href="/notifications">

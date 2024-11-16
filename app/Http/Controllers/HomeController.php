@@ -9,8 +9,8 @@ public function index()
 {
 // You can pass data to the view if needed
 return view('home');
-}
-}
+    }
+    }
 
 
 ?>

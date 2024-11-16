@@ -1,47 +1,64 @@
-<x-guest-layout>
-    <!-- Session Status -->
-    <x-auth-session-status class="mb-4" :status="session('status')" />
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
 
-    <form method="POST" action="{{ route('login') }}">
-        @csrf
-
-        <!-- Email Address -->
-        <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+<body>
+    <!-- Container for the image and form split into two halves on medium screens and above -->
+    <div class="flex items-center min-h-screen">
+        <!-- Left Side (Image) - Visible only on medium and larger screens -->
+        <div class="hidden md:block w-1/2 h-screen">
+            <img src="{{ asset('images/music-woman.jpg') }}" alt="Music Woman" class="w-full h-full object-cover">
         </div>
 
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
+        <!-- Right Side (Form) -->
+        <div class="w-full md:w-1/2 flex justify-center md:justify-start items-center px-4 py-8">
+            <div class="max-w-lg w-full bg-white p-8 rounded-lg shadow-lg">
+                <!-- Tab Headers -->
+                <div class="flex justify-center space-x-8 mb-6">
+                    <button id="studentTab" onclick="showForm('student')" class="px-4 py-2 text-lg font-semibold text-gray-700 hover:bg-green-500 hover:text-white transition">
+                        I'm a Student
+                    </button>
+                    <button id="mentorTab" onclick="showForm('mentor')" class="px-4 py-2 text-lg font-semibold text-gray-700 hover:bg-green-500 hover:text-white transition">
+                        I'm a Mentor
+                    </button>
+                </div>
 
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="current-password" />
+                <!-- Student Login Form -->
+                <form id="studentForm" action="{{ route('login-student') }}" method="POST" class="login-form">
+                    @csrf
+                    <h2 class="text-2xl font-semibold text-center text-gray-800 mb-4">Student Login</h2>
+                    <input type="email" name="email" placeholder="Email" required class="w-full px-4 py-2 mb-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500" />
+                    <input type="password" name="password" placeholder="Password" required class="w-full px-4 py-2 mb-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500" />
+                    <button type="submit" class="w-full py-2 bg-green-500 text-white rounded-md hover:bg-green-600 transition">Sign In</button>
+                    <a href="{{ route('password.request') }}" class="block text-center text-sm text-gray-600 mt-2 hover:text-green-500">Forgot Password?</a>
+                    <p class="text-center text-gray-600 mt-4">Want to start mentoring? <a href="{{ route('mentor/home') }}" class="text-green-500 hover:underline">Apply now</a></p>
+                </form>
 
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
+                <!-- Mentor Login Form -->
+                <form id="mentorForm" action="{{ route('login-mentor') }}" method="POST" class="login-form hidden">
+                    @csrf
+                    <h2 class="text-2xl font-semibold text-center text-gray-800 mb-4">Mentor Login</h2>
+                    <input type="email" name="email" placeholder="Email" required class="w-full px-4 py-2 mb-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500" />
+                    <input type="password" name="password" placeholder="Password" required class="w-full px-4 py-2 mb-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500" />
+                    <button type="submit" class="w-full py-2 bg-green-500 text-white rounded-md hover:bg-green-600 transition">Sign In</button>
+                    <a href="{{ route('password.request') }}" class="block text-center text-sm text-gray-600 mt-2 hover:text-green-500">Forgot Password?</a>
+                    <p class="text-center text-gray-600 mt-4">Want to start mentoring? <a href="{{ route('mentor/home') }}" class="text-green-500 hover:underline">Apply now</a></p>
+                </form>
+            </div>
         </div>
+    </div>
 
-        <!-- Remember Me -->
-        <div class="block mt-4">
-            <label for="remember_me" class="inline-flex items-center">
-                <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500" name="remember">
-                <span class="ms-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
-            </label>
-        </div>
-
-        <div class="flex items-center justify-end mt-4">
-            @if (Route::has('password.request'))
-                <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}">
-                    {{ __('Forgot your password?') }}
-                </a>
-            @endif
-
-            <x-primary-button class="ms-3">
-                {{ __('Log in') }}
-            </x-primary-button>
-        </div>
-    </form>
-</x-guest-layout>
+    <script>
+        // JavaScript to toggle forms between student and mentor
+        function showForm(type) {
+            document.getElementById('studentForm').classList.toggle('hidden', type !== 'student');
+            document.getElementById('mentorForm').classList.toggle('hidden', type !== 'mentor');
+        }
+    </script>
+</body>
+</html>

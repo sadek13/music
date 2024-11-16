@@ -13,7 +13,7 @@ use App\Models\User; // Import the Mentor model
 use Illuminate\Support\Facades\Route;
 
 // In routes/web.php
-Route::get('/', [HomeController::class, 'index']);
+Route::get('/', [HomeController::class, 'index'])->name("/");
 
 
 // Route::get('/users/login', function () {
@@ -39,6 +39,7 @@ Route::get('/mentors/create', [MentorController::class, 'show'])->name('mentors.
 
 
 Route::get('/mentors/{mentor}/music/{musicType}', [MentorController::class, 'show'])->name('mentors.show');
+
 
 
 

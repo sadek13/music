@@ -15,12 +15,29 @@ Route::middleware('guest')->group(function () {
     Route::get('register', [RegisteredUserController::class, 'create'])
         ->name('register');
 
-    Route::post('register', [RegisteredUserController::class, 'store']);
+    Route::post('register', [RegisteredUserController::class, 'storeStudent']);
+
+    Route::post('mentor/register', [RegisteredUserController::class, 'storeMentor']);
+
 
     Route::get('login', [AuthenticatedSessionController::class, 'create'])
         ->name('login');
 
-    Route::post('login', [AuthenticatedSessionController::class, 'store']);
+
+
+
+    Route::post('/login-student', [AuthenticatedSessionController::class, 'storeStudent'])->name('login-student');
+
+    Route::post('/login-mentor', [AuthenticatedSessionController::class, 'storeMentor'])->name('login-mentor');
+
+    Route::get('/mentor/apply', [AuthenticatedSessionController::class, 'getMentorApply'])->name('mentor/apply');
+
+    Route::post('/mentor/apply', [AuthenticatedSessionController::class, 'getMentorApply'])->name('mentor/apply');
+
+    Route::post('/student/signup', [AuthenticatedSessionController::class, 'getMentorApply'])->name('student/signup');
+
+    Route::get('/mentor/home', [AuthenticatedSessionController::class, 'getMentorHome'])->name('mentor/home');
+
 
     Route::get('forgot-password', [PasswordResetLinkController::class, 'create'])
         ->name('password.request');

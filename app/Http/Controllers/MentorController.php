@@ -33,9 +33,8 @@ class MentorController extends Controller
 
         $message = $mentors->isEmpty() ? 'No mentors found' : '';
 
-        // dd($mentors);
 
-        return view('mentors.index', compact('mentors', 'musicTypes', 'message', 'request'));
+        return view('mentor.browse-mentors', compact('mentors', 'musicTypes', 'message', 'request'));
     }
 
 
@@ -61,13 +60,13 @@ class MentorController extends Controller
         // Retrieve the specific music type
         $musicType = $mentor->musicType->firstWhere('id', $musicTypeId); // Get the first music type for the mentor
 
+        $mentorSchedule = json_decode($mentor->schedule, true); // Con
 
-
-// $unavailableDates=getUnavailableDates($mentorId);
-
+        // dump($mentorSchedule);
+        // $this->fetchAvailableDates($mentorId);
 
         // Pass the variables to the view
-        return view('mentors.show', compact('mentor', 'musicType', 'otherMentors'));
+        return view('mentor.mentor-details', compact('mentor', 'musicType', 'otherMentors','mentorSchedule'));
     }
 
 
@@ -90,6 +89,7 @@ class MentorController extends Controller
                 'mentors.id'
             );
 
+            // dump($query);
         // Apply filters based on request inputs
         if ($experienceLevel = $request->input('experience_level')) {
             if ($experienceLevel !== 'Any') {
@@ -116,9 +116,11 @@ class MentorController extends Controller
         return $query->orderBy('mentor_music_type.review_star_rate', 'desc')->get();
     }
 
-    // public function fetchUnavailableDates($mentorId){
+    public function fetchAvailableDates($mentorId)
+    {
 
+        $schedule = Mentor::where('id', $mentorId)->value('schedule');
 
-
-    // }
+        dump($schedule);
+    }
 }

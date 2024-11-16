@@ -8,12 +8,12 @@
                 <p>Guitar</p>
             </a>
         </div>
-        <div class="text-center">
+        {{-- <div class="text-center">
             <a href="{{ route('mentors.index', ['musicTypeName' => 'piano']) }}" class="text-gray-700 hover:text-blue-600">
                 <i class="fas fa-piano fa-3x"></i>
                 <p>Piano</p>
             </a>
-        </div>
+        </div> --}}
         <div class="text-center">
             <a href="{{ route('mentors.index', ['musicTypeName' => 'drums']) }}" class="text-gray-700 hover:text-blue-600">
                 <i class="fas fa-drum fa-3x"></i>
@@ -22,19 +22,19 @@
         </div>
 
         <!-- Row 2 -->
-        <div class="text-center">
+        {{-- <div class="text-center">
             <a href="{{ route('mentors.index', ['musicTypeName' => 'violin']) }}" class="text-gray-700 hover:text-blue-600">
                 <i class="fas fa-violin fa-3x"></i>
                 <p>Violin</p>
             </a>
-        </div>
+        </div> --}}
         <div class="text-center">
             <a href="{{ route('mentors.index', ['musicTypeName' => 'flute']) }}" class="text-gray-700 hover:text-blue-600">
                 <i class="fas fa-music fa-3x"></i> <!-- Substitute with a flute icon if available -->
                 <p>Flute</p>
             </a>
         </div>
-        <div class="text-center">
+        {{-- <div class="text-center">
             <a href="{{ route('mentors.index', ['musicTypeName' => 'saxophone']) }}" class="text-gray-700 hover:text-blue-600">
                 <i class="fas fa-saxophone fa-3x"></i>
                 <p>Saxophone</p>
@@ -59,7 +59,7 @@
                 <i class="fas fa-clarinet fa-3x"></i> <!-- Substitute with a clarinet icon if available -->
                 <p>Clarinet</p>
             </a>
-        </div>
+        </div> --}}
     </div>
 
 </section>
